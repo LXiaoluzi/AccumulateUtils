@@ -7,6 +7,13 @@ import android.text.TextUtils;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+/**
+ * 
+ * 使用：
+ * InputFilter[] filters = {new CashierInputFilter()};
+ * mEditText.setFilters(filters);
+ *
+ */
 public class CashierInputFilter implements InputFilter {
     Pattern mPattern;
 
@@ -69,7 +76,7 @@ public class CashierInputFilter implements InputFilter {
             if (!matcher.matches()) {
                 return "";
             } else {
-                if ((POINTER.equals(source.toString())) && TextUtils.isEmpty(destText)) {  //首位不能输入小数点
+                if ((POINTER.equals(source.toString())) && TextUtils.isEmpty(destText)) {  //首位输入小数点，前面自动填充0
                     return "0.";
                 } else if (!POINTER.equals(source.toString()) && ZERO.equals(destText)) { //如果首位输入0，接下来只能输入小数点
                     return "";
